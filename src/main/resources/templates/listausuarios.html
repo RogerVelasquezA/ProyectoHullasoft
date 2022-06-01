@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout/layout :: head">
+</head>
+
+<body>
+	<!-- Fixed navbar -->
+	<div th:replace="layout/layout :: navbar"></div>
+	<!-- /.navbar -->
+
+	<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a th:href="@{/}">Home</a></li>
+			<li class="active">Cursos</li>
+		</ol>
+
+		<div class="row">
+
+			<!-- Article main content -->
+			<article class="col-sm-8 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Usuarios </h1>
+				</header>
+				<div class="card-deck" th:each=usuarios:${usuarios}>
+					<div class="card">
+						<div class="card-body">
+							<p th:text="${usuarios.nombres+' '+usuarios.apellidos}"></p>
+							<p th:text="${usuarios.dni}"></p>
+							<p th:text="${usuarios.id}"></p>
+							<p class="card-text">
+							<p th:text="${'Correo: '+usuarios.email}"></p><br>
+									<br>
+									<a class="btn btn-primary" th:href="@{/editarusuario/} + ${usuarios.id}" th:text="editar"></a>
+									<a class="btn btn-primary" th:href="@{/eliminarusuario/} + ${usuarios.id}" th:text="eliminar"></a>									
+							</p>							
+						</div>
+					</div>					
+				</div>
+			</article>
+			<!-- /Article -->
+
+			<!-- Sidebar -->
+			<aside class="col-sm-4 sidebar sidebar-right">
+
+				<div class="widget">
+					<h4>Vacancies</h4>
+					<ul class="list-unstyled list-spaces">
+						<li><a href="">Lorem ipsum dolor</a><br> <span
+							class="small text-muted">Lorem ipsum dolor sit amet,
+								consectetur adipisicing elit. Animi, laborum.</span></li>
+						<li><a href="">Totam, libero, quis</a><br> <span
+							class="small text-muted">Suscipit veniam debitis sed ipsam
+								quia magnam eveniet perferendis nisi.</span></li>
+						<li><a href="">Enim, sequi dignissimos</a><br> <span
+							class="small text-muted">Reprehenderit illum quod unde quo
+								vero ab inventore alias veritatis.</span></li>
+						<li><a href="">Suscipit, consequatur, aut</a><br> <span
+							class="small text-muted">Sed, mollitia earum debitis est
+								itaque esse reiciendis amet cupiditate.</span></li>
+						<li><a href="">Nam, illo, veritatis</a><br> <span
+							class="small text-muted">Delectus, sapiente illo provident
+								quo aliquam nihil beatae dignissimos itaque.</span></li>
+					</ul>
+				</div>
+
+			</aside>
+			<!-- /Sidebar -->
+
+		</div>
+	</div>
+	<!-- /container -->
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+
+
+
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script
+		src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="assets/js/headroom.min.js"></script>
+	<script src="assets/js/jQuery.headroom.min.js"></script>
+	<script src="assets/js/template.js"></script>
+</body>
+</html>
