@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/layout :: head"></head>
 
 <body>
@@ -39,41 +39,59 @@
 							<form th:action="@{/grabar}" th:object="${usuario}" method="post">
 								<input type="hidden" th:field="*{id}">
 								<div class="top-margin">
-									<label>First Name</label> <input type="text"
-										class="form-control" th:field="*{nombres}">
+									<label>Nombres</label> <input type="text"
+										class="form-control" th:field="*{nombres}"><span
+										class="text-danger" th:if="${#fields.hasErrors('nombres')}"
+										th:errors="*{nombres}"></span>
 								</div>
 								<div class="top-margin">
-									<label>Last Name</label> <input type="text"
+									<label>Apellidos</label> <input type="text"
 										class="form-control" th:field="*{apellidos}">
+										<span
+										class="text-danger" th:if="${#fields.hasErrors('apellidos')}"
+										th:errors="*{apellidos}"></span>
+										
 								</div>
 								<div class="top-margin">
-									<label>Correo <span class="text-danger" >*</span></label>
-									<input type="text" class="form-control" th:field="*{email}">
+									<label>Correo <span class="text-danger">*</span></label> <input
+										type="text" class="form-control" th:field="*{email}">
+										<span
+										class="text-danger" th:if="${#fields.hasErrors('email')}"
+										th:errors="*{email}"></span>
 								</div>
 								<div class="row top-margin">
-									<div class="col-sm-4">
-										<label>DNI <span class="text-danger" th:field="*{dni}">*</span></label>
-										<input type="text" class="form-control">
+									<div class="col-sm-6">
+										<label>DNI <span class="text-danger">*</span></label> <input
+											type="text" class="form-control" th:field="*{dni}">
+											<span
+										class="text-danger" th:if="${#fields.hasErrors('dni')}"
+										th:errors="*{dni}"></span>
 									</div>
-									
-									<div class="col-sm-4">
-										<label>Pais</label> 
-										<select th:field="*{paises}" class="form-control" >
-											<option th:each="paises:${paises}" 
-												th:value="${paises.id}"
+
+									<div class="col-sm-6">
+										<label>Pais</label> <select th:field="*{paises}"
+											class="form-control">
+											<option  value="" >Seleccione</option>
+											<option th:each="paises:${paises}" th:value="${paises.id}"
 												th:text="${paises.nombre}" />
+												
 										</select>
+										<span
+										class="text-danger" th:if="${#fields.hasErrors('paises')}"
+										th:errors="*{paises}"></span>
 									</div>
 								</div>
 
 								<div class="row top-margin">
 									<div class="col-sm-6">
 										<label>Password <span class="text-danger">*</span></label> <input
-											type="text" class="form-control" th:field="*{contrasenia}">
+											type="password" class="form-control" th:field="*{contrasenia}"><span
+										class="text-danger" th:if="${#fields.hasErrors('contrasenia')}"
+										th:errors="*{contrasenia}"></span>
 									</div>
 									<div class="col-sm-6">
 										<label>Confirm Password <span class="text-danger">*</span></label>
-										<input type="text" class="form-control">
+										<input type="password" class="form-control">
 									</div>
 								</div>
 

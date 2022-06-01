@@ -14,39 +14,58 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "cursos")
 public class Curso {
 	
 	@Id
-	@Column(name = "id_cursos")
+	@Column(name = "id_curso")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotBlank(message = "El Nombre no puede estar Vacio")
+	@Size(max = 30)
+	private String nombre;
 	
 	@Column(name = "fec_subida")
 	private Date fechaSubida;
 	
 	@Column(name = "fec_actualizacion")
 	private Date FechaActualizacion;
-		
+	
+	@NotBlank(message = "La descripcion no puede estar Vacia")
+	@Size(max = 500)
 	private String descripcion;
 	
+	
+	@NotNull(message = "este campo no puede estar vacio")
 	private Double precio;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)	
 	@JoinColumn(name = "id_materia")
+	@NotNull(message = "Debe seleccionar una materia")
 	private Materia materias;
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_docente")
+	@NotNull(message = "Debe seleccionar una Docente")
 	private Docente docentes;
 	
 	@OneToMany(mappedBy = "cursos",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Capitulo> capitulos;
 
-	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	
 	public Docente getDocentes() {
 		return docentes;
@@ -112,6 +131,13 @@ public class Curso {
 
 	public void setPrecio(Double precio) {
 		this.precio = precio;
+	}
+
+	@Override
+	public String toString() {
+		return "Curso [id=" + id + ", nombre=" + nombre + ", fechaSubida=" + fechaSubida + ", FechaActualizacion="
+				+ FechaActualizacion + ", descripcion=" + descripcion + ", precio=" + precio + ", materias=" + materias
+				+ ", docentes=" + docentes + ", capitulos=" + capitulos + "]";
 	}
 	
 	

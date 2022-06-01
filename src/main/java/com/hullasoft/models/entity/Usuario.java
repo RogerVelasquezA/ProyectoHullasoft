@@ -13,7 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,20 +27,38 @@ public class Usuario {
 	@Column(name = "id_usuario")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotBlank(message = "El Nombre no puede estar Vacio")
+	@Size(max = 30)
 	private String nombres;
+	
+	@NotBlank(message = "El Apellido no puede estar Vacio")
+	@Size(max = 30)
 	private String apellidos;
+	
+	@NotBlank(message = "El DNI no puede estar Vacio")
+	@Size(min = 8, max = 8)
 	private String dni;
+	
+	@NotBlank(message = "El Correo no puede estar Vacio")
 	private String email;
+	
+	
 	
 	@Column(name = "fec_inscrip")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String fecInscripcion;
+	
+	
 	private String estado;
+	
+	@NotBlank(message = "La Contraseña no puede estar Vacia")
 	private String contrasenia;
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_pais")
+	@NotNull(message = "Debe de seleccionar un Pais")
 	private Pais paises;
 	
 	

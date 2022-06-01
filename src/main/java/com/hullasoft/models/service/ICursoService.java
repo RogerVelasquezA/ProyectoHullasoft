@@ -13,5 +13,5 @@ public interface ICursoService{
 	
 	public void eliminar(Curso id);
 	
-	public Curso buscarCurso(Curso id);
+	public Curso buscarCurso(Curso Curso);
 }

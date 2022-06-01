@@ -22,15 +22,15 @@ public class Pais {
 	private String nombre;
 	
 	@OneToMany(mappedBy = "paises",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Usuario> libros;
+	private List<Usuario> usuarios;
 	
 	
 	
 	public List<Usuario> getLibros() {
-		return libros;
+		return usuarios;
 	}
 	public void setLibros(List<Usuario> libros) {
-		this.libros = libros;
+		this.usuarios = libros;
 	}
 	public Pais() {
 

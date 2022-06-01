@@ -13,24 +13,23 @@ import com.hullasoft.models.entity.Curso;
 @Service
 public class CursoServiceImp implements ICursoService {
 
-	@Autowired CursoDao cursoDao;
+	@Autowired private CursoDao cursoDao;
 	
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<Curso> listarCursos() {
 		// TODO Auto-generated method stub
 		return (List<Curso>) cursoDao.findAll();
 	}
 
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional
 	public void agregarCurso(Curso id) {
 		cursoDao.save(id);
-		
 	}
 
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional
 	public void eliminar(Curso id) {
 		// TODO Auto-generated method stub
 		cursoDao.delete(id);
@@ -38,7 +37,7 @@ public class CursoServiceImp implements ICursoService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly = true)
 	public Curso buscarCurso(Curso id) {
 		// TODO Auto-generated method stub
 		return cursoDao.findById(id.getId()).orElse(null);

@@ -34,17 +34,17 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="about.html">About</a></li>
+					<li class="active"><a th:href="@{/}">Home</a></li>
+					<li><a th:href="@{/cursos/}">About</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrador <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="sidebar-left.html">Left Sidebar</a></li>
-							<li class="active"><a href="sidebar-right.html">Right Sidebar</a></li>
+							<li><a th:href="@{/cargarcurso/}">Agregar Curso</a></li>
+							<li class="active"><a th:href="@{/listarusuarios/}">Listar Usuarios</a></li>
 						</ul>
 					</li>
 					<li><a href="contact.html">Contact</a></li>
-					<li><a class="btn" th:href="@{/login/}">SIGN IN / SIGN UP</a></li>
+					<li><a class="btn" th:href="@{/agregar/}">SIGN IN / SIGN UP</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -59,33 +59,38 @@
 				<div class="row">
 					
 					<div class="col-md-3 widget">
-						<h3 class="widget-title">Contact</h3>
+						<h3 class="widget-title">Contactanos</h3>
 						<div class="widget-body">
-							<p>+234 23 9873237<br>
-								<a href="mailto:#">some.email@somewhere.com</a><br>
+								<p>+51 945 812 848<br>
+								<p>+51 925 071 190<br>
+								<p>(01) 3320689<br>
+								<br></br>
+								<a href="mailto:#"> mesadepartes@hullasoft.com</a><br>
 								<br>
-								234 Hidden Pond Road, Ashland City, TN 37015
+
 							</p>	
 						</div>
 					</div>
 
 					<div class="col-md-3 widget">
-						<h3 class="widget-title">Follow me</h3>
+						<h3 class="widget-title">Siguenos en nuestras redes sociales</h3>
 						<div class="widget-body">
 							<p class="follow-me-icons">
-								<a href=""><i class="fa fa-twitter fa-2"></i></a>
-								<a href=""><i class="fa fa-dribbble fa-2"></i></a>
-								<a href=""><i class="fa fa-github fa-2"></i></a>
-								<a href=""><i class="fa fa-facebook fa-2"></i></a>
+								<a href="https://www.twitter.com/home"><i class="fa fa-twitter fa-2"></i></a>
+								<a href="https://www.youtube.com/"><i class="fa fa-youtube fa-2"></i></a>
+								<a href="https://www.instagram.com/"><i class="fa fa-instagram fa-2"></i></a>
+								<a href="https://www.facebook.com/"><i class="fa fa-facebook fa-2"></i></a>
 							</p>	
 						</div>
 					</div>
 
 					<div class="col-md-6 widget">
-						<h3 class="widget-title">Text widget</h3>
+						<h3 class="widget-title">Descripcion</h3>
+						<p>Contamos con un metodología propia y probada de enseñanza, que soluciona
+						   de manera integral los desafíos de aprendizaje, conocimiento y capacitación que
+						   requerimos las personas hoy, con un modelo adaptativo disponible para
+			 			   personas y empresas.</p>
 						<div class="widget-body">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
-							<p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
 						</div>
 					</div>
 
@@ -100,11 +105,11 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="#">Home</a> | 
-								<a href="about.html">About</a> |
+								<a href="#">Inicio</a> | 
+								<a href="about.html">Cursos</a> |
 								<a href="sidebar-right.html">Sidebar</a> |
-								<a href="contact.html">Contact</a> |
-								<b><a href="signup.html">Sign up</a></b>
+								<a href="contact.html">Contactanos</a> |
+								<b><a href="signup.html">Iniciar Sesion</a></b>
 							</p>
 						</div>
 					</div>
@@ -112,7 +117,7 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2014, Your name. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
+								Copyright &copy; 2022, Hullasoft. Designed by Hullasoft</a> 
 							</p>
 						</div>
 					</div>
@@ -122,6 +127,7 @@
 		</div>
 
 	</footer>	
+
 	
 	
 	

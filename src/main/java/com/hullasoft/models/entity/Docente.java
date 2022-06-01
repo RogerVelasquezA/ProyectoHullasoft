@@ -16,7 +16,7 @@ public class Docente {
 	
 	@Id
 	@Column(name = "id_docente")
-	private String id;
+	private Integer id;
 	@Column(name = "nom_docente")
 	private String nombre;
 	@Column(name = "ape_docente ")
@@ -25,11 +25,13 @@ public class Docente {
 	@OneToMany(mappedBy = "docentes",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Curso> cursos;
 
-	public String getId() {
+	
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
