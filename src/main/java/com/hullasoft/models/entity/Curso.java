@@ -1,5 +1,7 @@
 package com.hullasoft.models.entity;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -32,10 +36,10 @@ public class Curso {
 	private String nombre;
 	
 	@Column(name = "fec_subida")
-	private Date fechaSubida;
+	private LocalDateTime fechaSubida;
 	
 	@Column(name = "fec_actualizacion")
-	private Date FechaActualizacion;
+	private LocalDateTime FechaActualizacion;
 	
 	@NotBlank(message = "La descripcion no puede estar Vacia")
 	@Size(max = 500)
@@ -58,6 +62,21 @@ public class Curso {
 	
 	@OneToMany(mappedBy = "cursos",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Capitulo> capitulos;
+	
+	
+	
+	@PrePersist //permite que se inicie antes que se llame el metodo persist
+	public void prePersist() {
+		this.fechaSubida = LocalDateTime.now();
+	}
+	
+	@PreUpdate //permite que se inicie antes que se llame el metodo persist
+	public void preUpdate() {
+		this.FechaActualizacion = LocalDateTime.now();
+	}
+	
+	
+	
 
 	public String getNombre() {
 		return nombre;
@@ -101,19 +120,21 @@ public class Curso {
 		this.capitulos = capitulos;
 	}
 
-	public Date getFechaSubida() {
+	
+
+	public LocalDateTime getFechaSubida() {
 		return fechaSubida;
 	}
 
-	public void setFechaSubida(Date fechaSubida) {
+	public void setFechaSubida(LocalDateTime fechaSubida) {
 		this.fechaSubida = fechaSubida;
 	}
 
-	public Date getFechaActualizacion() {
+	public LocalDateTime getFechaActualizacion() {
 		return FechaActualizacion;
 	}
 
-	public void setFechaActualizacion(Date fechaActualizacion) {
+	public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
 		FechaActualizacion = fechaActualizacion;
 	}
 

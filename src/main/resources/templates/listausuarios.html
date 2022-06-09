@@ -29,15 +29,14 @@
 					<div class="card">
 						<div class="card-body">
 							<p th:text="${usuarios.nombres+' '+usuarios.apellidos}"></p>
-							<p th:text="${usuarios.dni}"></p>
-							<p th:text="${usuarios.id}"></p>
+							<p th:text="${'DNI :'+usuarios.dni}"></p>
+							<p th:text="${'ID :'+usuarios.id}"></p>
 							<p class="card-text">
-							<p th:text="${'Correo: '+usuarios.email}"></p><br>
-									<br>
+							<p th:text="${'Correo: '+usuarios.email}"></p>
 									<a class="btn btn-primary" th:href="@{/editarusuario/} + ${usuarios.id}" th:text="editar"></a>
 									<a class="btn btn-primary" th:href="@{/eliminarusuario/} + ${usuarios.id}" th:text="eliminar"></a>									
 							</p>							
-						</div>
+						</div><br>
 					</div>					
 				</div>
 			</article>

@@ -19,6 +19,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -60,6 +61,11 @@ public class Usuario {
 	@JoinColumn(name = "id_pais")
 	@NotNull(message = "Debe de seleccionar un Pais")
 	private Pais paises;
+	
+	
+	@OneToMany(mappedBy = "usuario",fetch = FetchType.LAZY, cascade = CascadeType.ALL) //1 cliente - muchas facturas
+	private List<Factura> facturas;
+	
 	
 	
 	
