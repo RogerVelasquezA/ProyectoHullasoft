@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout :: head"></head>
 
 <body>
@@ -36,6 +38,12 @@
 
 							<form th:action="@{/grabar}" th:object="${usuario}" method="post">
 								<input type="hidden" th:field="*{id}">
+								<div class="top-margin">
+									<label>Username</label> <input type="text"
+										class="form-control" th:field="*{username}"><span
+										class="text-danger" th:if="${#fields.hasErrors('username')}"
+										th:errors="*{username}"></span>
+								</div>
 								<div class="top-margin">
 									<label>Nombres</label> <input type="text"
 										class="form-control" th:field="*{nombres}"><span
@@ -83,9 +91,9 @@
 								<div class="row top-margin">
 									<div class="col-sm-6">
 										<label>Password <span class="text-danger">*</span></label> <input
-											type="password" class="form-control" th:field="*{contrasenia}"><span
-										class="text-danger" th:if="${#fields.hasErrors('contrasenia')}"
-										th:errors="*{contrasenia}"></span>
+											type="password" class="form-control" th:field="*{password}"><span
+										class="text-danger" th:if="${#fields.hasErrors('password')}"
+										th:errors="*{password}"></span>
 									</div>
 									<div class="col-sm-6">
 										<label>Confirm Password <span class="text-danger">*</span></label>

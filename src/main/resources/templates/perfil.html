@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+	<!-- Fixed navbar -->
+	<div th:replace="layout/layout :: navbar"></div>
+	<!-- /.navbar -->
+
+	<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li class="active">Registro</li>
+		</ol>
+
+		<div class="row">
+
+			<!-- Article main content -->
+			<article class="col-xs-12 maincontent">
+
+				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h3 class="thin text-center">Perfil de Usuario</h3>
+							<p class="text-center text-muted"></p>
+							<hr>
+
+							<div class="card-deck">
+								<div class="card">
+									<div class="card-body">
+										<p th:text="${usuario.nombres+' '+usuario.apellidos}"></p>
+										<p th:text="${'DNI :'+usuario.dni}"></p>
+										<p th:text="${'ID :'+usuario.id}"></p>
+										<p class="card-text">
+										<p th:text="${'Correo: '+usuario.email}"></p>
+										<p th:text="${'Fecha de Incripcion: '+usuario.fecInscripcion}"></p>
+										<a class="btn btn-primary"
+											th:href="@{/editarusuario/} + ${usuario.id}"
+											th:text="'editar Perfil'"></a>
+										</p>
+									</div>
+									<br>
+								</div>
+							</div>
+							
+							
+							<table th:if="${not #lists.isEmpty(usuario.facturas)}"
+					class="table table-bordered table-striped my-4">
+					<thead class="thead-dark">
+						<tr>
+							<th>folio</th>
+							<th>Fecha</th>
+							<th>Total</th>
+							<th>ver</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="factura: ${usuario.facturas}">
+							<td th:text="${factura.id}"></td>
+							<td th:text="${factura.fecha}"></td>				
+							<td th:text="${factura.montoTotal}"></td>
+							<td><a class="btn btn-primary btn-sm" th:href="@{'/factura/listarfactura/' + ${factura.id}}" th:text="'detalle'"></a></td>
+						</tr>
+					</tbody>
+
+				</table>
+							
+							
+							
+							
+							
+							
+							
+						</div>
+					</div>
+
+				</div>
+
+			</article>
+			<!-- /Article -->
+
+		</div>
+	</div>
+	<!-- /container -->
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+
+
+
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script
+		src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="assets/js/headroom.min.js"></script>
+	<script src="assets/js/jQuery.headroom.min.js"></script>
+	<script src="assets/js/template.js"></script>
+</body>
+</html>

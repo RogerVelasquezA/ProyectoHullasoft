@@ -59,9 +59,9 @@ public class Curso {
 	@JoinColumn(name = "id_docente")
 	@NotNull(message = "Debe seleccionar una Docente")
 	private Docente docentes;
-	
+	/*
 	@OneToMany(mappedBy = "cursos",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Capitulo> capitulos;
+	private List<Capitulo> capitulos;*/
 	
 	
 	
@@ -77,6 +77,47 @@ public class Curso {
 	
 	
 	
+
+	public Curso() {
+
+	}
+
+	
+
+	
+	
+	public Curso(@NotBlank(message = "El Nombre no puede estar Vacio") @Size(max = 30) String nombre,
+			LocalDateTime fechaSubida, LocalDateTime fechaActualizacion,
+			@NotBlank(message = "La descripcion no puede estar Vacia") @Size(max = 500) String descripcion,
+			@NotNull(message = "este campo no puede estar vacio") Double precio,
+			@NotNull(message = "Debe seleccionar una materia") Materia materias,
+			@NotNull(message = "Debe seleccionar una Docente") Docente docentes) {
+		super();
+		this.nombre = nombre;
+		this.fechaSubida = fechaSubida;
+		FechaActualizacion = fechaActualizacion;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.materias = materias;
+		this.docentes = docentes;
+	}
+
+	public Curso(Integer id, @NotBlank(message = "El Nombre no puede estar Vacio") @Size(max = 30) String nombre,
+			LocalDateTime fechaSubida, LocalDateTime fechaActualizacion,
+			@NotBlank(message = "La descripcion no puede estar Vacia") @Size(max = 500) String descripcion,
+			@NotNull(message = "este campo no puede estar vacio") Double precio,
+			@NotNull(message = "Debe seleccionar una materia") Materia materias,
+			@NotNull(message = "Debe seleccionar una Docente") Docente docentes) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.fechaSubida = fechaSubida;
+		FechaActualizacion = fechaActualizacion;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.materias = materias;
+		this.docentes = docentes;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -112,14 +153,7 @@ public class Curso {
 		this.id = id;
 	}
 
-	public List<Capitulo> getCapitulos() {
-		return capitulos;
-	}
-
-	public void setCapitulos(List<Capitulo> capitulos) {
-		this.capitulos = capitulos;
-	}
-
+	
 	
 
 	public LocalDateTime getFechaSubida() {
@@ -158,7 +192,7 @@ public class Curso {
 	public String toString() {
 		return "Curso [id=" + id + ", nombre=" + nombre + ", fechaSubida=" + fechaSubida + ", FechaActualizacion="
 				+ FechaActualizacion + ", descripcion=" + descripcion + ", precio=" + precio + ", materias=" + materias
-				+ ", docentes=" + docentes + ", capitulos=" + capitulos + "]";
+				+ ", docentes=" + docentes +  "]";
 	}
 	
 	

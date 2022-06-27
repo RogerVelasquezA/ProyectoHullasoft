@@ -9,6 +9,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,18 +23,21 @@ import javax.persistence.Table;
 @Table(name = "facturas")
 public class Factura {
 
-	@Id
+	@Id	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_factura")
 	private Integer id;
 	
 	
 	private LocalDateTime fecha;
+	
 	@Column(name = "tip_pago")
 	private String tipoPago;
-	
-	private Double monto;
-	
+		
+	@Column(name = "montototal")
 	private Double montoTotal;
+	
+	
 	
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) //1 factura - muchas itemfactura
@@ -40,14 +45,30 @@ public class Factura {
 	private List<ItemFactura> items;
 	
 	
+	
+	
+
 	@ManyToOne(fetch = FetchType.LAZY) //muchas facturas - 1 cliente
 	private Usuario usuario;
+	
+	
+	
+	
 
 	@PrePersist //permite que se inicie antes que se llame el metodo persist
 	public void prePersist() {
 		this.fecha = LocalDateTime.now();
 	}
 	
+	
+	
+	public Factura(Double montoTotal, List<ItemFactura> items, Usuario usuario) {
+		super();
+		
+		this.montoTotal = montoTotal;
+		this.items = items;
+		this.usuario = usuario;
+	}
 
 	public Factura() {
 		
@@ -89,28 +110,17 @@ public class Factura {
 	}
 
 
-	public Double getMonto() {
-		return monto;
-	}
 
 
-	public void setMonto(Double monto) {
-		this.monto = monto;
-	}
+	
 
 
 	public Double getMontoTotal() {
-		
-		
-		Double total = 0.0;
-		int size = items.size();
-		for(int i=0;i<size;i++) {
-			total += items.get(i).calcularImporte();
-		}
-		return total;
-		
-		
+		return montoTotal;
 	}
+
+
+	
 
 
 	public void setMontoTotal(Double montoTotal) {
@@ -137,7 +147,18 @@ public class Factura {
 		this.usuario = usuario;
 	}
 	
+	
+	public void addItemFactura(ItemFactura item) {
+		this.items.add(item);
+	}
 
+
+
+	@Override
+	public String toString() {
+		return "Factura [id=" + id + ", fecha=" + fecha + ", tipoPago=" + tipoPago + ", montoTotal=" + montoTotal
+				+ ", items=" + items + ", usuario=" + usuario + "]";
+	}
 
 	
 	

@@ -6,6 +6,9 @@ import com.hullasoft.models.entity.Usuario;
 
 public interface UsuarioDao extends CrudRepository<Usuario, Integer>{
 	
+	Usuario findByUsername(String username);
+	
+	
 	
 
 }

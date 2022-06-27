@@ -1,5 +1,9 @@
 package com.hullasoft.models.dao;
 
-public interface FacturaDao {
+import org.springframework.data.repository.CrudRepository;
+
+import com.hullasoft.models.entity.Factura;
+
+public interface FacturaDao extends CrudRepository<Factura, Integer>{
 
 }

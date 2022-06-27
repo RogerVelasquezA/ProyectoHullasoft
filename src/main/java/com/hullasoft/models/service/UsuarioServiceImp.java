@@ -43,4 +43,11 @@ public class UsuarioServiceImp implements IUsuarioService {
 		
 	}
 
+	@Override
+	public Usuario buscarUsuarioyContrasenia(Usuario email, Usuario contrasenia) {
+		// TODO Auto-generated method stub
+		return null;
+				//usuarioDao.findByEmailAndContrasenia(email, contrasenia);
+	}
+
 }

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout :: head">
 </head>
 
@@ -37,8 +39,12 @@
 									th:text="${cursos.docentes.nombre+' ' +cursos.docentes.apellido}"></small><br>
 									<small
 									th:text="${'Materia: '+cursos.materias.nombre}"></small><br>
-									<a class="btn btn-primary" th:href="@{/editar/} + ${cursos.id}" th:text="editar"></a>
-									<a class="btn btn-primary" th:href="@{/eliminarcurso/} + ${cursos.id}" th:text="eliminar"></a>									
+									<form th:action="@{/factura/agregarcarrito/} + ${cursos.id}" method="post" sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+                            				<button class="btn btn-primary" th:href="@{/factura/}" type="submit"   th:text="Comprar"></button>
+                        			</form><br>
+									
+									<a sec:authorize="hasRole('ROLE_ADMIN')"  class="btn btn-primary" th:href="@{/editar/} + ${cursos.id}" th:text="'Editar Curso'"></a>
+									<a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary" th:href="@{/eliminarcurso/} + ${cursos.id}" th:text="'Eliminar Curso'"></a>									
 							</p>							
 						</div>
 					</div>					
@@ -49,25 +55,11 @@
 			<!-- Sidebar -->
 			<aside class="col-sm-4 sidebar sidebar-right">
 
-				<div class="widget">
-					<h4>Vacancies</h4>
-					<ul class="list-unstyled list-spaces">
-						<li><a href="">Lorem ipsum dolor</a><br> <span
-							class="small text-muted">Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit. Animi, laborum.</span></li>
-						<li><a href="">Totam, libero, quis</a><br> <span
-							class="small text-muted">Suscipit veniam debitis sed ipsam
-								quia magnam eveniet perferendis nisi.</span></li>
-						<li><a href="">Enim, sequi dignissimos</a><br> <span
-							class="small text-muted">Reprehenderit illum quod unde quo
-								vero ab inventore alias veritatis.</span></li>
-						<li><a href="">Suscipit, consequatur, aut</a><br> <span
-							class="small text-muted">Sed, mollitia earum debitis est
-								itaque esse reiciendis amet cupiditate.</span></li>
-						<li><a href="">Nam, illo, veritatis</a><br> <span
-							class="small text-muted">Delectus, sapiente illo provident
-								quo aliquam nihil beatae dignissimos itaque.</span></li>
-					</ul>
+				<div class="widget" sec:authorize="hasRole('ROLE_ADMIN')">
+				
+					<h4>Reportes</h4>
+					<a  href="/reporte/ReporteVentas" class="btn btn-primary">Reporte De ventas </a>	
+	
 				</div>
 
 			</aside>

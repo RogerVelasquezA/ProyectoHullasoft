@@ -1,31 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
 <meta charset="utf-8">
-	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
-	
-	<title>Hullasoft</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="Sergey Pozhilov (GetTemplate.com)">
 
-	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
-	
-	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+<title>Hullasoft</title>
 
-	<!-- Custom styles for our template -->
-	<link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}" media="screen" >
-	<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
+<link rel="stylesheet" media="screen"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+
+<!-- Custom styles for our template -->
+<link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}"
+	media="screen">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top headroom"   th:fragment="navbar">
+	<div class="navbar navbar-inverse navbar-fixed-top headroom"
+		th:fragment="navbar">
 		<div class="container">
 			<div class="navbar-header">
 				<!-- Button for smallest screens 
@@ -36,39 +41,58 @@
 				<ul class="nav navbar-nav pull-right">
 					<li class="active"><a th:href="@{/}">Home</a></li>
 					<li><a th:href="@{/cursos/}">Cursos</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrador <b class="caret"></b></a>
+
+					<li class="dropdown" sec:authorize="hasRole('ROLE_ADMIN')"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown">Administrador<b
+							class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a th:href="@{/cargarcurso/}">Agregar Curso</a></li>
-							<li class="active"><a th:href="@{/listarusuarios/}">Listar Usuarios</a></li>
-						</ul>
-					</li>
-					<li><a href="contact.html">Contact</a></li>
-					<li><a class="btn" th:href="@{/agregar/}">SIGN IN / SIGN UP</a></li>
+							<li class="active"><a th:href="@{/listarusuarios/}">Listar
+									Usuarios</a></li>
+						</ul></li>
+
+					
+					
+					<li  th:if="${not #authorization.expression('hasAnyRole(''ROLE_ADMIN'',''ROLE_USER'')')}"     ><a class="btn" th:href="@{/login/}">SIGN IN / SIGN UP</a></li>
+					
+					<li class="dropdown" sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"><a
+						href="#" class="dropdown-toggle" data-toggle="dropdown" sec:authentication="name"><b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+						<li><a th:href="@{/perfil/}">Perfil Usuario</a></li>
+						<li><a th:href="@{/factura/}">Carrito</a></li>
+						
+						<li> <form method="POST" th:action="@{/logout}"> <a href="#" onclick="this.parentNode.submit();">Cerrar Sesion</a></form></li>
+							<li>
+							<a href="#" onclick="this.parentNode.submit();">Logoutotot</a></li>
+							
+						</ul></li>
 				</ul>
-			</div><!--/.nav-collapse -->
+			</div>
+			<!--/.nav-collapse -->
 		</div>
-	</div> 
-	
-	
-	
+	</div>
+
+
+
 	<footer id="footer" class="top-space" th:fragment="footer">
 
 		<div class="footer1">
 			<div class="container">
 				<div class="row">
-					
+
 					<div class="col-md-3 widget">
 						<h3 class="widget-title">Contactanos</h3>
 						<div class="widget-body">
-								<p>+51 945 812 848<br>
-								<p>+51 925 071 190<br>
-								<p>(01) 3320689<br>
-								<br></br>
-								<a href="mailto:#"> mesadepartes@hullasoft.com</a><br>
-								<br>
+							<p>
+								+51 945 812 848<br>
+							<p>
+								+51 925 071 190<br>
+							<p>
+								(01) 3320689<br> <br></br> <a href="mailto:#">
+									mesadepartes@hullasoft.com</a><br> <br>
 
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -76,40 +100,42 @@
 						<h3 class="widget-title">Siguenos en nuestras redes sociales</h3>
 						<div class="widget-body">
 							<p class="follow-me-icons">
-								<a href="https://www.twitter.com/home"><i class="fa fa-twitter fa-2"></i></a>
-								<a href="https://www.youtube.com/"><i class="fa fa-youtube fa-2"></i></a>
-								<a href="https://www.instagram.com/"><i class="fa fa-instagram fa-2"></i></a>
-								<a href="https://www.facebook.com/"><i class="fa fa-facebook fa-2"></i></a>
-							</p>	
+								<a href="https://www.twitter.com/home"><i
+									class="fa fa-twitter fa-2"></i></a> <a
+									href="https://www.youtube.com/"><i
+									class="fa fa-youtube fa-2"></i></a> <a
+									href="https://www.instagram.com/"><i
+									class="fa fa-instagram fa-2"></i></a> <a
+									href="https://www.facebook.com/"><i
+									class="fa fa-facebook fa-2"></i></a>
+							</p>
 						</div>
 					</div>
 
 					<div class="col-md-6 widget">
 						<h3 class="widget-title">Descripcion</h3>
-						<p>Contamos con un metodología propia y probada de enseñanza, que soluciona
-						   de manera integral los desafíos de aprendizaje, conocimiento y capacitación que
-						   requerimos las personas hoy, con un modelo adaptativo disponible para
-			 			   personas y empresas.</p>
-						<div class="widget-body">
-						</div>
+						<p>Contamos con un metodología propia y probada de enseñanza,
+							que soluciona de manera integral los desafíos de aprendizaje,
+							conocimiento y capacitación que requerimos las personas hoy, con
+							un modelo adaptativo disponible para personas y empresas.</p>
+						<div class="widget-body"></div>
 					</div>
 
-				</div> <!-- /row of widgets -->
+				</div>
+				<!-- /row of widgets -->
 			</div>
 		</div>
 
 		<div class="footer2">
 			<div class="container">
 				<div class="row">
-					
+
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="#">Inicio</a> | 
-								<a href="about.html">Cursos</a> |
-								<a href="sidebar-right.html">Sidebar</a> |
-								<a href="contact.html">Contactanos</a> |
-								<b><a href="signup.html">Iniciar Sesion</a></b>
+								<a href="#">Inicio</a> | <a href="about.html">Cursos</a> | <a
+									href="sidebar-right.html">Sidebar</a> | <a href="contact.html">Contactanos</a>
+								| <b><a href="signup.html">Iniciar Sesion</a></b>
 							</p>
 						</div>
 					</div>
@@ -117,20 +143,26 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2022, Hullasoft. Designed by Hullasoft</a> 
+								Copyright &copy; 2022, Hullasoft. Designed by Hullasoft</a>
 							</p>
 						</div>
 					</div>
-
-				</div> <!-- /row of widgets -->
+					<form method="POST" th:action="@{/logout}">
+						<b>User:</b> <span sec:authentication="name">Usuario que
+							hizo loguin</span> | <b>Roles:</b> <span
+							sec:authentication="principal.authorities">Roles</span> |
+							 <a href="#" onclick="this.parentNode.submit();">Logout</a>
+					</form>
+				</div>
+				<!-- /row of widgets -->
 			</div>
 		</div>
 
-	</footer>	
+	</footer>
 
-	
-	
-	
+
+
+
 
 </body>
 </html>

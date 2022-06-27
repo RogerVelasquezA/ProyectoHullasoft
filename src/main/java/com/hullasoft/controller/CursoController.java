@@ -2,6 +2,7 @@ package com.hullasoft.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,7 @@ import com.hullasoft.models.service.IMateriaService;
 
 
 
-//@RequestMapping("/curso")
 @Controller
-///@SessionAttributes("curso")
 public class CursoController {
 	
 	@Autowired
@@ -41,7 +40,7 @@ public class CursoController {
 	
 	
 	@GetMapping("/cursos")
-	private String cursos(Model model) {
+	private String cursos(Model model, HttpServletRequest request) {
 		
 		Curso curso = new Curso();
 		/*Materia materias=(Materia)materiaService.listarMateria();
@@ -52,15 +51,13 @@ public class CursoController {
 		
 
 		model.addAttribute("cursos", cursoService.listarCursos());
-		
-		
-		
+			
 		
 		return "about";
 	}
 	
 	@GetMapping("/cargarcurso")
-	public String form(Model model) {
+	public String form(Model model, HttpServletRequest request) {
 		
 		
 		
@@ -74,7 +71,7 @@ public class CursoController {
 	
 	
 	@PostMapping("/grabarcurso")
-	public String grabarPag(@Valid Curso curso, Errors errores, Model model) {
+	public String grabarPag(@Valid Curso curso, Errors errores, Model model, HttpServletRequest request) {
 		
 		
 		model.addAttribute("lstmaterias",materiaService.listarMateria());
@@ -91,7 +88,7 @@ public class CursoController {
 	
 	
 	@GetMapping("/editar/{id}")
-	public String editar(@ModelAttribute Curso curso, Model model) {
+	public String editar(@ModelAttribute Curso curso, Model model, HttpServletRequest request) {
 		
 		
 		model.addAttribute("curso", cursoService.buscarCurso(curso));
@@ -103,7 +100,7 @@ public class CursoController {
 	}
 	
 	@GetMapping("/eliminarcurso/{id}")
-	public String eliminar(@ModelAttribute Curso curso, Model model) {		
+	public String eliminar(@ModelAttribute Curso curso, Model model, HttpServletRequest request) {		
 		
 		cursoService.eliminar(curso);
 		return "redirect:/cursos";

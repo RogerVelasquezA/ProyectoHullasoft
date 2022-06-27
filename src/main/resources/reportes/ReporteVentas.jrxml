@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteVentas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="024cda5b-6470-479a-8666-5cfc83347075">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="353"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="635"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL 5"/>
+	<queryString language="SQL">
+		<![CDATA[select  count(u.id_usuario), c.nombre
+from usuarios u join facturas f
+on id_usuario = usuario_id_usuario join det_factura d 
+on f.id_factura = d.id_factura join cursos c
+on d.id_curso = c.id_curso group by c.nombre]]>
+	</queryString>
+	<field name="count(u.id_usuario)" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="count(u.id_usuario)"/>
+		<property name="com.jaspersoft.studio.field.label" value="count(u.id_usuario)"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cursos"/>
+	</field>
+	<group name="count(u.id_usuario)">
+		<groupExpression><![CDATA[$F{count(u.id_usuario)}]]></groupExpression>
+	</group>
+	<group name="nombre">
+		<groupExpression><![CDATA[$F{nombre}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="10" width="534" height="30" uuid="94f86a51-4ab4-4e95-a1fa-5a63507060d9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="18"/>
+				</textElement>
+				<text><![CDATA[HullaSoft]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="320" y="0" width="100" height="30" uuid="d4010932-9b88-47b5-8686-c86c3197c29c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="907d5296-f900-4d01-9055-023be1cc3fc4"/>
+				</reportElement>
+				<text><![CDATA[Nombre del Curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="0" width="100" height="30" uuid="0bcb58c6-5f52-4c82-b663-ea3948a053ed">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="78f0e057-a524-4eb6-acf9-c26ef6c2520a"/>
+				</reportElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="320" y="0" width="100" height="30" uuid="b4a78b97-d612-4119-9ff6-7d1961576c0a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="907d5296-f900-4d01-9055-023be1cc3fc4"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="100" height="30" uuid="d02bf909-71d6-4814-b660-f60b4a75f4e6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="78f0e057-a524-4eb6-acf9-c26ef6c2520a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{count(u.id_usuario)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="270" splitType="Stretch">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="70" width="554" height="200" uuid="b43e396a-099f-4020-b224-74ee9b0479a4"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset resetType="Report"/>
+					<categorySeries>
+						<seriesExpression><![CDATA["SERIES 1"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{nombre}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{count(u.id_usuario)}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

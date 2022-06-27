@@ -1,5 +1,6 @@
 package com.hullasoft.models.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,9 +17,10 @@ public class ItemFactura {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_det")
 	private Long id;
 	
-	private Integer cantidad;
+
 	
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_curso")
@@ -27,6 +29,16 @@ public class ItemFactura {
 	
 
 	
+	public ItemFactura() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ItemFactura(Curso curso) {
+		super();
+		this.curso = curso;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -35,13 +47,7 @@ public class ItemFactura {
 		this.id = id;
 	}
 
-	public Integer getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(Integer cantidad) {
-		this.cantidad = cantidad;
-	}
+	
 
 	public Curso getCurso() {
 		return curso;
@@ -50,11 +56,6 @@ public class ItemFactura {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
-	
-	public Double calcularImporte() {
-		return cantidad.doubleValue()*curso.getPrecio();
-	}
 
 	
-
 }

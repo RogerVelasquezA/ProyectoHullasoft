@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoPaises" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0fa93785-1101-41de-8222-142c98888000">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL 5"/>
+	<queryString language="SQL">
+		<![CDATA[select  count(u.id_usuario), p.nom_pais
+from usuarios u join paises p
+on u.id_pais = p.id_pais group by p.nom_pais]]>
+	</queryString>
+	<field name="count(u.id_usuario)" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="count(u.id_usuario)"/>
+		<property name="com.jaspersoft.studio.field.label" value="count(u.id_usuario)"/>
+	</field>
+	<field name="nom_pais" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nom_pais"/>
+		<property name="com.jaspersoft.studio.field.label" value="nom_pais"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paises"/>
+	</field>
+	<group name="count(u.id_usuario)">
+		<groupExpression><![CDATA[$F{count(u.id_usuario)}]]></groupExpression>
+	</group>
+	<group name="nom_pais">
+		<groupExpression><![CDATA[$F{nom_pais}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="10" width="534" height="30" uuid="c19677b1-7c6a-4a11-9f9c-9707709b9dd7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="18"/>
+				</textElement>
+				<text><![CDATA[HullaSoft]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="2" width="534" height="30" uuid="98d1e42b-dc92-4311-acf4-068b365d0ffe"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="14"/>
+				</textElement>
+				<text><![CDATA[Listado de Catidad de Usuarios Listado por paises]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="130" y="0" width="100" height="30" uuid="ede2baab-73e5-4704-a84d-3abf672ffeee">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="405b81ac-8727-40aa-96f8-e171d2d48ceb"/>
+				</reportElement>
+				<text><![CDATA[Usuarios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="100" height="30" uuid="f320fccc-576c-4b38-b29b-6961bce8c7a8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b37a9379-2976-425e-b7ad-ac64cc0076c4"/>
+				</reportElement>
+				<text><![CDATA[Paises]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="130" y="0" width="100" height="20" uuid="076021f5-1377-420c-9d08-96234c2d59a2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="405b81ac-8727-40aa-96f8-e171d2d48ceb"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{count(u.id_usuario)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="100" height="20" uuid="510acdac-35a6-4ccb-b85c-1b8297d6e84d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b37a9379-2976-425e-b7ad-ac64cc0076c4"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nom_pais}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="219" splitType="Stretch">
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="170" y="0" width="200" height="200" uuid="e335d90a-7e11-4bbf-b81b-41e80bb47d8f"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<dataset resetType="Report"/>
+					<keyExpression><![CDATA[$F{nom_pais}]]></keyExpression>
+					<valueExpression><![CDATA[$F{count(u.id_usuario)}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -14,4 +14,7 @@ public interface IUsuarioService {
 	
 	public Usuario buscarUsuario(Usuario usuario);
 	
+	
+	public Usuario buscarUsuarioyContrasenia(Usuario email, Usuario contrasenia);
+	
 }

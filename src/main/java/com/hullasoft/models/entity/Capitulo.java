@@ -19,10 +19,10 @@ public class Capitulo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String capitulo;
-	
+	/*
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_curso")
-	private Curso cursos;
+	private Curso cursos;*/
 
 	
 
@@ -42,13 +42,7 @@ public class Capitulo {
 		this.capitulo = capitulo;
 	}
 
-	public Curso getCursos() {
-		return cursos;
-	}
 
-	public void setCursos(Curso cursos) {
-		this.cursos = cursos;
-	}
 	
 	
 	

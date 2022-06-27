@@ -10,7 +10,7 @@ import com.hullasoft.models.dao.MateriaDao;
 import com.hullasoft.models.entity.Materia;
 
 @Service
-public class MateriaSErviceImp implements IMateriaService{
+public class MateriaServiceImp implements IMateriaService{
 
 	@Autowired private MateriaDao materiaDao;
 	
